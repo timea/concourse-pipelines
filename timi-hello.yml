@@ -21,7 +21,7 @@ jobs:
           source: {repository: ubuntu}
         run:
           path: echo
-          args: ["Hello, world!"]
+          args: ["Hello, new world!"]
   - name: get-source
     plan:
       - get: source-code
