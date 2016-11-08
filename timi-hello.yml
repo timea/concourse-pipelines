@@ -1,0 +1,28 @@
+resources:
+  - name: source-code
+    type: git
+    source:
+      uri: https://github.com/timea/concourse-pipelines.git
+      branch: master
+      git_config:
+      - name: core.bigFileThreshold
+        value: 10m
+      disable_ci_skip: true
+
+
+jobs:
+  - name: timi-hello-world
+    plan:
+    - task: timi-say-hello
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source: {repository: ubuntu}
+        run:
+          path: echo
+          args: ["Hello, world!"]
+  - name: get-source
+    plan:
+      - get: source-code
+        trigger: true
